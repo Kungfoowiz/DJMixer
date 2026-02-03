@@ -1,4 +1,5 @@
 # DJ Mixer made with MicroPython and Raspberry Pi Pico
+## [Click here to watch the DJ Mixer in action on Mixxx DJ Software](https://github.com/user-attachments/assets/c74ed593-388e-4696-b9c2-6adaca0f0c6c)  
 ![1dbc79e0-af80-4cbd-9cc6-678a54a26eda](https://github.com/user-attachments/assets/9eca09d0-c048-4ca1-b73f-c3cb29630cba)  
 ![0bc36396-f4b3-4ab6-beea-399256fcfa06](https://github.com/user-attachments/assets/6477cc51-d20f-46e7-a9d1-bdcb0fdfa294)  
 ![ccb899a6-bd30-4ec4-8da5-e5f0a19fa289](https://github.com/user-attachments/assets/4b0ecf65-8af4-4f4b-ade8-4411cdf3981f)  
@@ -61,7 +62,6 @@ Turn the Knob and repeat the Print Test Command to see the changing volume value
 
 ### 6. Mixxx (DJ Software) Configuration 
 [Setting up Mixxx DJ Software](https://github.com/user-attachments/assets/174267b2-277f-4a17-ad45-1758d374d3d4)  
-[Playing Music in Mixxx DJ Software](https://github.com/user-attachments/assets/c74ed593-388e-4696-b9c2-6adaca0f0c6c)  
 [Click to view Mixxx website](https://mixxx.org/)
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
