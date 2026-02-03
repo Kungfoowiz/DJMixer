@@ -45,24 +45,24 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 3. Hard Reset the Raspberry Pi Pico, replug the USB so Windows can find the DJ Mixer.  
 
 ### 4. MicroPython Code  
-USB Device Name | boot.py [Click to view the code](https://test.com)  
-MIDI Volume Knob | MidiKnob.py [Click to view the code](https://test.com)  
-MIDI Device Main Code | main.py [Click to view the code](https://test.com)  
+1. USB Device Name | boot.py [Click to view the code](https://test.com)  
+2. MIDI Volume Knob | MidiKnob.py [Click to view the code](https://test.com)  
+3. MIDI Device Main Code | main.py [Click to view the code](https://test.com)  
 
 
 ### 5. PuTTY Testing
 ![86577e6c-a461-44f6-8fba-a4fd0da4a37e](https://github.com/user-attachments/assets/72b99873-b96e-4c9b-8490-2b76b1a3f843)  
-Open COM5 (for example), Speed 115200.  
-Press Ctrl+C and you are in the Raspberry Pi Pico REPL Console.  
-Type the following test commands.  
+1. Open COM5 (for example), Speed 115200.  
+2. Press Ctrl+C and you are in the Raspberry Pi Pico REPL Console.  
+3. Type the following test commands.  
 `import board, analogio`  
 `myKnob = analogio.AnalogIn(board.GP26)`  
 `print(myKnob.value)`  
-Turn the Knob and repeat the Print Test Command to see the changing volume values.  
+4. Turn the Knob and repeat the Print Test Command to see the changing volume values.  
 
 ### 6. Mixxx (DJ Software) Configuration 
-[Setting up Mixxx DJ Software](https://github.com/user-attachments/assets/174267b2-277f-4a17-ad45-1758d374d3d4)  
 [Click to view Mixxx website](https://mixxx.org/)
+[Click here to watch the DJ Mixer being setup to control the Master Volume Gain on the Mixxx DJ Software](https://github.com/user-attachments/assets/174267b2-277f-4a17-ad45-1758d374d3d4)  
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
 3. Use the Learning Wizard to link your physical knob to the Master Volume Gain.  
