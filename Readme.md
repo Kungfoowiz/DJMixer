@@ -1,5 +1,5 @@
 # DJ Mixer made with MicroPython and Raspberry Pi Pico
-## [Click here to watch the DJ Mixer in action on Mixxx DJ Software](https://github.com/user-attachments/assets/c74ed593-388e-4696-b9c2-6adaca0f0c6c)  
+[Click here to watch the DJ Mixer in action on Mixxx DJ Software](https://github.com/user-attachments/assets/c74ed593-388e-4696-b9c2-6adaca0f0c6c)  
   
 ![1dbc79e0-af80-4cbd-9cc6-678a54a26eda](https://github.com/user-attachments/assets/9eca09d0-c048-4ca1-b73f-c3cb29630cba)  
 ![0bc36396-f4b3-4ab6-beea-399256fcfa06](https://github.com/user-attachments/assets/6477cc51-d20f-46e7-a9d1-bdcb0fdfa294)  
