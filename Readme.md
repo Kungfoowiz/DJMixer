@@ -40,7 +40,7 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 4. Raspberry Pi Pico Device will restart with your Firmware.  
 
 ### 3. MicroPython for Raspberry Pi Pico
-1.Run: python -m py_compile boot.py MidiKnob.py main.py to verify Code is correct.  
+1. Run the following comment to verify the Code is correct: python -m py_compile boot.py MidiKnob.py main.py  
 2. Copy Code to the CIRCUITPY drive: boot.py, MidiKnob.py, main.py   
 3. Hard Reset the Raspberry Pi Pico, replug the USB so Windows can find the DJ Mixer.  
 
