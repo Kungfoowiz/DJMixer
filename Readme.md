@@ -61,7 +61,7 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 4. Turn the Knob and repeat the Print Test Command to see the changing volume values.  
 
 ### 6. Mixxx (DJ Software) Configuration 
-[Click to view Mixxx website](https://mixxx.org/)
+[Click to view Mixxx website](https://mixxx.org/)  
 [Click here to watch the DJ Mixer being setup to control the Master Volume Gain on the Mixxx DJ Software](https://github.com/user-attachments/assets/174267b2-277f-4a17-ad45-1758d374d3d4)  
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
