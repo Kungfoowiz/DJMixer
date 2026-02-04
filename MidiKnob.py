@@ -20,23 +20,29 @@ class MidiKnob:
         self.statusChannel: int = 0xB0 + (midiChannel - 1)
         # Set initial value to -1 so the first reading always triggers an update
         self.potentiometerLastValue: int = -1
+
+        # Sensitivity of the potentiometer signal to create a change.
+        self.potentiometerSensitivity: int = 2
         
 
     # This runs repeatedly to check for knob movements
     def monitor(self) -> None:
         # Get the Potentiometer 16-bit pin value (0-65535) and convert to the 7-bit MIDI range (0-127)
         potentiometerValue: int = self.potentiometer.value // 512
-        
-        # Check if the knob has moved since the last check
-        if self.potentiometerLastValue != potentiometerValue :
-            # Create a 3-byte Control Change (CC) message.
-            message: bytes = bytes([self.statusChannel, self.midiChangeControl, potentiometerValue])
-            
-            # Write the raw bytes specifically to the MIDI Out port.
-            self.midiOut.write(message)
-            
-            # Save the last Potentiometer value, to compare on the next check.
-            self.potentiometerLastValue = potentiometerValue
 
-            print(potentiometerValue)
+        # Knob did not move or got jitter from the potentiometer.
+        if abs(potentiometerValue - self.potentiometerLastValue) < self.potentiometerSensitivity: 
+            return
+
+        # Create a 3-byte Control Change (CC) message.
+        message: bytes = bytes([self.statusChannel, self.midiChangeControl, potentiometerValue])
+        
+        # Write the raw bytes specifically to the MIDI Out port.
+        self.midiOut.write(message)
+        
+        # Save the last Potentiometer value, to compare on the next check.
+        self.potentiometerLastValue = potentiometerValue
+
+        # DEBUG knob value.
+        # print(potentiometerValue)
 
