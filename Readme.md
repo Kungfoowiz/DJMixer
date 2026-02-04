@@ -71,13 +71,13 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 ### 6. Mixxx (DJ Software) Install  
 [Click to view Mixxx website](https://mixxx.org/)  
 
-### 7. Mixxx (DJ Software) Master Volume Gain Configuration   
+### 7. Master Volume Gain Configuration   
 [Click here to watch the DJ Mixer being setup to control the Master Volume Gain on the Mixxx DJ Software](https://github.com/user-attachments/assets/174267b2-277f-4a17-ad45-1758d374d3d4)  
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
 3. Use the Learning Wizard to link your physical knob to the Master Volume Gain.  
 
-### 8. Mixxx (DJ Software) Headphone Cue Configuration 
+### 8. Headphone Cue Configuration 
 [Click here to watch the DJ Mixer being setup for Headphone Cues on the Mixxx DJ Software](https://github.com/user-attachments/assets/59d0e264-92cb-4635-8caf-5a2e17bedcf7)  
   
 ![Headphone Cue Buttons working](https://github.com/user-attachments/assets/45569a21-6c4b-425c-a57b-c6715b0c6437)  
@@ -85,5 +85,9 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
   
 1. Preferences > Sound Hardware  
 2. Go to Headphones > Output
-3. Set it to output to Speaker/Headphones [Headphone Jack] instead of Primary Sound Driver.  
-
+3. Set it to output to Speaker/Headphones [Headphone Jack] instead of Primary Sound Driver.
+  
+#### Headphone Cue Usage  
+1. Plug Head-/Earphones into your Audio Jack.
+2. When mixing Music from Left to Right, press Headphone Cue Button 2 and you will hear it in your Headphones, but not the audience.
+7. When mixing from Right to Left, use Headphone Cue Button 1.
