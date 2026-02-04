@@ -1,24 +1,26 @@
-import analogio  # Module to read analog voltage from pins
-import usb_midi  # Module to send and receive MIDI data via USB
-from microcontroller import Pin # Module to define specific hardware pins
+# Module to read analog voltage from pins
+import analogio  
+# Module to send and receive MIDI data via USB
+import usb_midi  
+# Module to define specific hardware pins
+from microcontroller import Pin 
 
-class MidiVolumeKnob:
+
+class MidiKnob:
     # This runs once when you create the knob in code.py
     def __init__(self, pin: Pin, midiChangeControl: int, midiChannel: int):
         # Initialise the analog pin to read the potentiometer
         self.potentiometer = analogio.AnalogIn(pin)
-        
         # Store the Control Change (CC) number (standard for knobs/faders)
         self.midiChangeControl: int = midiChangeControl
+        # Reference index [1] of the ports, which is the standard 'MIDI Out' to computer
+        self.midiOut = usb_midi.ports[1]
         
         # Calculate the Status Byte for Control Change (0xB0 is CC on Channel 1)
         self.statusChannel: int = 0xB0 + (midiChannel - 1)
-        
         # Set initial value to -1 so the first reading always triggers an update
         self.potentiometerLastValue: int = -1
         
-        # Reference index [1] of the ports, which is the standard 'MIDI Out' to computer
-        self.midiOut = usb_midi.ports[1]
 
     # This runs repeatedly to check for knob movements
     def monitor(self) -> None:
