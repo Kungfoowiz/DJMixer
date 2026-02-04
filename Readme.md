@@ -54,9 +54,9 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 3. Hard Reset the Raspberry Pi Pico, replug the USB so Windows can find the DJ Mixer.  
 
 ### 4. MicroPython Code  
-1. USB Device Name | boot.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/boot.py)
-2. MIDI Device Main Code | main.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/main.py)  
-3. MIDI Volume Knob | MidiKnob.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/MidiKnob.py)  
+1. MIDI Main Code | main.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/main.py)  
+2. MIDI Knob | MidiKnob.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/MidiKnob.py)
+3. MIDI Button | MidiButton.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/MidiButton.py)
 
 ### 5. PuTTY Testing
 ![86577e6c-a461-44f6-8fba-a4fd0da4a37e](https://github.com/user-attachments/assets/72b99873-b96e-4c9b-8490-2b76b1a3f843)  
