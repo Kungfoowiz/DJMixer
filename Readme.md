@@ -5,34 +5,42 @@
 ![0bc36396-f4b3-4ab6-beea-399256fcfa06](https://github.com/user-attachments/assets/6477cc51-d20f-46e7-a9d1-bdcb0fdfa294)  
 ![ccb899a6-bd30-4ec4-8da5-e5f0a19fa289](https://github.com/user-attachments/assets/4b0ecf65-8af4-4f4b-ade8-4411cdf3981f)  
 
-### 1. Wiring Diagram for Raspberry Pi Pico and Volume Knob [Potentiometer] 
+### 1. Wiring Diagram for Raspberry Pi Pico and Volume Knob [Potentiometer]  
+  
+                          [ MICRO-USB ]  
+                          /             \  
+             ____________|_______________|____________  
+            | [ ] [ ] [ ]                 [ BOOTSEL ] |  
+      GP0 --| 1                                    40 |-- VBUS (5V USB)  
+      GP1 --| 2                                    39 |-- VSYS (2-5V)  
+      GND --| 3             [ RP2040 ]             38 |-- GND  
+      GP2 --| 4               (CHIP)               37 |-- 3V3_EN  
+      GP3 --| 5                                    36 |-- 3V3 OUT (POT PIN 1)  
+      GP4 --| 6                                    35 |-- ADC_VREF  
+      GP5 --| 7              [ FLASH ]             34 |-- GP28 / A2  
+      GND --| 8              (MEMORY)              33 |-- GND (POT PIN 3)  
+      GP6 --| 9                                    32 |-- GP27 / A1  
+      GP7 --| 10                                   31 |-- GP26 / A0 (POT WIPER)  
+      GP8 --| 11                                   30 |-- RUN (RESET)  
+      GP9 --| 12            [ CRYSTAL ]            29 |-- GP22  
+      GND --| 13                                   28 |-- GND  
+     GP10 --| 14                                   27 |-- GP21  
+     GP11 --| 15                                   26 |-- GP20  
+     GP12 --| 16                                   25 |-- GP19  
+     GP13 --| 17                                   24 |-- GP18  
+      GND --| 18                                   23 |-- GND  
 
-                           [ MICRO-USB ]
-                          /             \
-             ____________|_______________|____________
-            | [ ] [ ] [ ]                 [ BOOTSEL ] |
-      GP0 --| 1                                    40 |-- VBUS (5V USB)
-      GP1 --| 2                                    39 |-- VSYS (2-5V)
-      GND --| 3             [ RP2040 ]             38 |-- GND
-      GP2 --| 4               (CHIP)               37 |-- 3V3_EN
-      GP3 --| 5                                    36 |-- 3V3 OUT [Knob PIN 1 Positive Power]
-      GP4 --| 6                                    35 |-- ADC_VREF
-      GP5 --| 7              [ FLASH ]             34 |-- GP28 / A2
-      GND --| 8              (MEMORY)              33 |-- GND [Knob PIN 3 Negative Power]
-      GP6 --| 9                                    32 |-- GP27 / A1
-      GP7 --| 10                                   31 |-- GP26 / A0 [Knob PIN 2 Signal]
-      GP8 --| 11                                   30 |-- RUN (RESET)
-      GP9 --| 12            [ CRYSTAL ]            29 |-- GP22
-      GND --| 13                                   28 |-- GND
-     GP10 --| 14                                   27 |-- GP21
-     GP11 --| 15                                   26 |-- GP20
-     GP12 --| 16                                   25 |-- GP19
-     GP13 --| 17                                   24 |-- GP18
-      GND --| 18                                   23 |-- GND
-     GP14 --| 19            [ DEBUG ]              22 |-- GP17
-     GP15 --| 20            (SWD PINS)             21 |-- GP16
-            |_________________________________________|
+     GP14 --| 19  <-- Cue Button CH1 (left leg)  
+            |         Cue Button CH1 (right leg) --> GND  
 
+     GP15 --| 20  <-- Cue Button CH2 (left leg)  
+            |         Cue Button CH2 (right leg) --> GND  
+
+            |                                   22 |-- GP17  
+            |                                   21 |-- GP16  
+            |_________________________________________|  
+
+  
 ### 2. Firmware for Raspberry Pi Pico
 CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.org/board/raspberry_pi_pico/)
 1. Hold BOOTSEL
@@ -60,10 +68,22 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 `print(myKnob.value)`  
 4. Turn the Knob and repeat the Print Test Command to see the changing volume values.  
 
-### 6. Mixxx (DJ Software) Configuration 
+### 6. Mixxx (DJ Software) Install  
 [Click to view Mixxx website](https://mixxx.org/)  
-  
+
+### 7. Mixxx (DJ Software) Master Volume Gain Configuration   
 [Click here to watch the DJ Mixer being setup to control the Master Volume Gain on the Mixxx DJ Software](https://github.com/user-attachments/assets/174267b2-277f-4a17-ad45-1758d374d3d4)  
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
 3. Use the Learning Wizard to link your physical knob to the Master Volume Gain.  
+
+### 8. Mixxx (DJ Software) Headphone Cue Configuration 
+[Click here to watch the DJ Mixer being setup for Headphone Cues on the Mixxx DJ Software](https://github.com/user-attachments/assets/59d0e264-92cb-4635-8caf-5a2e17bedcf7)  
+  
+![Headphone Cue Buttons working](https://github.com/user-attachments/assets/45569a21-6c4b-425c-a57b-c6715b0c6437)  
+![Headphone Cue Buttons wiring](https://github.com/user-attachments/assets/b031b12a-3a67-4521-af70-4b56131af691)  
+  
+1. Preferences > Sound Hardware  
+2. Go to Headphones > Output
+3. Set it to output to Speaker/Headphones [Headphone Jack] instead of Primary Sound Driver.  
+
