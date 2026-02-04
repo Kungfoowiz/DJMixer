@@ -1,5 +1,5 @@
 # DJ Mixer made with MicroPython and Raspberry Pi Pico
-[Click here to watch the DJ Mixer in action on Mixxx DJ Software](https://github.com/user-attachments/assets/c74ed593-388e-4696-b9c2-6adaca0f0c6c)  
+[Click here to watch the DJ Mixer in action on Mixxx DJ Software](https://github.com/user-attachments/assets/1c553f8c-8dd1-4aad-b94b-343613790a40)  
   
 ![1dbc79e0-af80-4cbd-9cc6-678a54a26eda](https://github.com/user-attachments/assets/9eca09d0-c048-4ca1-b73f-c3cb29630cba)  
 ![0bc36396-f4b3-4ab6-beea-399256fcfa06](https://github.com/user-attachments/assets/6477cc51-d20f-46e7-a9d1-bdcb0fdfa294)  
@@ -72,7 +72,8 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 [Click to view Mixxx website](https://mixxx.org/)  
 
 ### 7. Master Volume Gain Configuration   
-[Click here to watch the DJ Mixer being setup to control the Master Volume Gain on the Mixxx DJ Software](https://github.com/user-attachments/assets/174267b2-277f-4a17-ad45-1758d374d3d4)  
+[Click here to watch the DJ Mixer being setup to control the Master Volume Gain on the Mixxx DJ Software](https://github.com/user-attachments/assets/feb887bd-2f77-4693-9b00-1f7e95c94420)  
+  
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
 3. Use the Learning Wizard to link your physical knob to the Master Volume Gain.  
