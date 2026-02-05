@@ -98,8 +98,9 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 [DJMixer crossfader fadin](https://github.com/user-attachments/assets/0ad6265e-071c-4046-b9fb-4720e6ab0d6d)  
   
 ![5c7438d6-c55d-49e5-b6f4-a9a65f438acc](https://github.com/user-attachments/assets/7c19b3dc-52ab-49b3-a6ca-f253b8f28b5f)  
-![a449f415-6a24-4223-9edb-fa6d8159da03](https://github.com/user-attachments/assets/a36323f3-0c38-42a1-976f-ddb2173cc6f6)  
 
+![5c7438d6-c55d-49e5-b6f4-a9a65f438acc](https://github.com/user-attachments/assets/4a7ab0ab-6f66-4749-b531-412ab5d66d08  
+  
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
 3. Use the Learning Wizard to link your physical fader to the Crossfader.
