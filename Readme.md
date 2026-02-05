@@ -1,4 +1,6 @@
-# DJ Mixer made with MicroPython and Raspberry Pi Pico
+# DJ Mixer made with MicroPython and Raspberry Pi Pico  
+[DJMixer fadin the Mixxx crossfader](https://github.com/user-attachments/assets/c222bb60-0cfd-4ebf-b4f0-bd47ec6e8ceb)  
+
 [Click here to watch the DJ Mixer in action on Mixxx DJ Software](https://github.com/user-attachments/assets/1c553f8c-8dd1-4aad-b94b-343613790a40)  
   
 ![1dbc79e0-af80-4cbd-9cc6-678a54a26eda](https://github.com/user-attachments/assets/9eca09d0-c048-4ca1-b73f-c3cb29630cba)  
@@ -92,8 +94,7 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 2. When mixing Music from Left to Right, press Headphone Cue Button 2 and you will hear it in your Headphones, but not the audience.
 7. When mixing from Right to Left, use Headphone Cue Button 1.
 
-### 9. Crossfader
-[DJMixer fadin the Mixxx crossfader](https://github.com/user-attachments/assets/c222bb60-0cfd-4ebf-b4f0-bd47ec6e8ceb)  
+### 9. Crossfader  
 [DJMixer crossfader fadin](https://github.com/user-attachments/assets/0ad6265e-071c-4046-b9fb-4720e6ab0d6d)  
   
 ![5c7438d6-c55d-49e5-b6f4-a9a65f438acc](https://github.com/user-attachments/assets/7c19b3dc-52ab-49b3-a6ca-f253b8f28b5f)  
