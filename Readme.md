@@ -7,7 +7,7 @@
 
 ### 1. Wiring Diagram for Raspberry Pi Pico, Volume Knob [Potentiometer], Headphone Cue [Button]  
   
-                          [ MICRO-USB ]  
+                           [ MICRO-USB ]  
                           /             \  
              ____________|_______________|____________  
             | [ ] [ ] [ ]                 [ BOOTSEL ] |  
@@ -15,12 +15,12 @@
       GP1 --| 2                                    39 |-- VSYS (2-5V)  
       GND --| 3             [ RP2040 ]             38 |-- GND  
       GP2 --| 4               (CHIP)               37 |-- 3V3_EN  
-      GP3 --| 5                                    36 |-- 3V3 OUT (POT PIN 1)  
+      GP3 --| 5                                    36 |-- 3V3 OUT (POT +V, XFADER VCC)  
       GP4 --| 6                                    35 |-- ADC_VREF  
       GP5 --| 7              [ FLASH ]             34 |-- GP28 / A2  
-      GND --| 8              (MEMORY)              33 |-- GND (POT PIN 3)  
-      GP6 --| 9                                    32 |-- GP27 / A1  
-      GP7 --| 10                                   31 |-- GP26 / A0 (POT WIPER)  
+      GND --| 8              (MEMORY)              33 |-- GND (POT GND, XFADER GND)  
+      GP6 --| 9                                    32 |-- GP27 / A1  <-- Crossfader OTA (Wiper)  
+      GP7 --| 10                                   31 |-- GP26 / A0  <-- Master Volume Wiper  
       GP8 --| 11                                   30 |-- RUN (RESET)  
       GP9 --| 12            [ CRYSTAL ]            29 |-- GP22  
       GND --| 13                                   28 |-- GND  
@@ -29,18 +29,18 @@
      GP12 --| 16                                   25 |-- GP19  
      GP13 --| 17                                   24 |-- GP18  
       GND --| 18                                   23 |-- GND  
-
+  
      GP14 --| 19  <-- Cue Button CH1 (left leg)  
             |         Cue Button CH1 (right leg) --> GND  
-
+  
      GP15 --| 20  <-- Cue Button CH2 (left leg)  
             |         Cue Button CH2 (right leg) --> GND  
-
+  
             |                                   22 |-- GP17  
             |                                   21 |-- GP16  
             |_________________________________________|  
-
-  
+    
+    
 ### 2. Firmware for Raspberry Pi Pico
 CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.org/board/raspberry_pi_pico/)
 1. Hold BOOTSEL
@@ -70,14 +70,14 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 ### 6. Mixxx (DJ Software) Install  
 [Click to view Mixxx website](https://mixxx.org/)  
 
-### 7. Master Volume Gain Configuration   
+### 7. Master Volume  
 [Click here to watch the DJ Mixer being setup to control the Master Volume Gain on the Mixxx DJ Software](https://github.com/user-attachments/assets/feb887bd-2f77-4693-9b00-1f7e95c94420)  
   
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
 3. Use the Learning Wizard to link your physical knob to the Master Volume Gain.  
 
-### 8. Headphone Cue Configuration 
+### 8. Headphone Cue
 [Click here to watch the DJ Mixer being setup for Headphone Cues on the Mixxx DJ Software](https://github.com/user-attachments/assets/59d0e264-92cb-4635-8caf-5a2e17bedcf7)  
   
 ![Headphone Cue Buttons working](https://github.com/user-attachments/assets/45569a21-6c4b-425c-a57b-c6715b0c6437)  
@@ -91,3 +91,16 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 1. Plug Head-/Earphones into your Audio Jack.
 2. When mixing Music from Left to Right, press Headphone Cue Button 2 and you will hear it in your Headphones, but not the audience.
 7. When mixing from Right to Left, use Headphone Cue Button 1.
+
+### 9. Crossfader
+[DJMixer fadin the Mixxx crossfader](https://github.com/user-attachments/assets/c222bb60-0cfd-4ebf-b4f0-bd47ec6e8ceb)  
+[DJMixer crossfader fadin](https://github.com/user-attachments/assets/0ad6265e-071c-4046-b9fb-4720e6ab0d6d)  
+  
+![5c7438d6-c55d-49e5-b6f4-a9a65f438acc](https://github.com/user-attachments/assets/7c19b3dc-52ab-49b3-a6ca-f253b8f28b5f)  
+![a449f415-6a24-4223-9edb-fa6d8159da03](https://github.com/user-attachments/assets/a36323f3-0c38-42a1-976f-ddb2173cc6f6)  
+
+1. Preferences > Controllers  
+2. Enable CircuitPython [DJ Mixer]  
+3. Use the Learning Wizard to link your physical fader to the Crossfader.
+
+  
