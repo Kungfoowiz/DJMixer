@@ -7,7 +7,7 @@
   
 ![a449f415-6a24-4223-9edb-fa6d8159da03](https://github.com/user-attachments/assets/ee2ae3a8-c3ae-4d56-87fa-120869454720)  
   
-### 1. Wiring Diagram for Raspberry Pi Pico, Volume Knob [Potentiometer], Headphone Cue [Button], Crossfader [Linear Potentiometer]  
+### 1. Wiring Diagram for Raspberry Pi Pico, Volume, Headphones, Crossfader  
   
                            [ MICRO-USB ]  
                           /             \  
