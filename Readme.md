@@ -9,9 +9,8 @@
   
 ### 1. Wiring Diagram for Raspberry Pi Pico, Volume/LEDs, Headphones, Crossfader  
   
-   All components use common 3V3 positive at pin 36
-   and common GND negative pins throughout the Raspberry Pi Pico.
-
+⚡️ All components use the 3V3 positive at pin 36 and common GND negative pins throughout the Raspberry Pi Pico.  
+  
                           [ MICRO‑USB ]  
                         /               \  
         -----------------------------------------------------------------  
