@@ -13,7 +13,7 @@ class MidiKnob:
         self.potentiometer = analogio.AnalogIn(pin)
         # Store the Control Change (CC) number (standard for knobs/faders)
         self.midiChangeControl: int = midiChangeControl
-        # Reference index [1] of the ports, which is the standard 'MIDI Out' to computer
+        # Standard MIDI Out.
         self.midiOut = usb_midi.ports[1]
         
         # Calculate the Status Byte for Control Change (0xB0 is CC on Channel 1)

@@ -14,7 +14,7 @@ class MidiButton:
         self.midiChangeControl: int = midiChangeControl
         # MIDI status byte for Note On/Off on this channel
         self.statusChannel = 0x90 + (midiChannel - 1)
-        # Reference index [1] of the ports, which is the standard 'MIDI Out' to computer
+        # Standard MIDI Out.
         self.midiOut = usb_midi.ports[1]
 
         # Tracks last physical state (True = not pressed)
