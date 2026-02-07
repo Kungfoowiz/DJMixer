@@ -42,7 +42,7 @@ class VolumeLED:
             # " MIDI Change Control = " + str(midiChangeControl) + 
             # " MIDI Value = " + str(midiValue))
 
-            # Find the MIDI percent (1 → 10)
+            # Find the MIDI percent (1 → 100)
             midiPercent = int((midiValue / 127) * 100)
 
             self.led0.value = midiPercent > 0
