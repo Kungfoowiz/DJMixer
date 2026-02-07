@@ -9,38 +9,37 @@
   
 ### 1. Wiring Diagram for Raspberry Pi Pico, Volume, Headphones, Crossfader  
   
-                           [ MICRO-USB ]  
-                          /             \  
-             ____________|_______________|____________  
-            | [ ] [ ] [ ]                 [ BOOTSEL ] |  
-      GP0 --| 1                                    40 |-- VBUS (5V USB)  
-      GP1 --| 2                                    39 |-- VSYS (2-5V)  
-      GND --| 3             [ RP2040 ]             38 |-- GND  
-      GP2 --| 4               (CHIP)               37 |-- 3V3_EN  
-      GP3 --| 5                                    36 |-- 3V3 OUT (POT +V, XFADER VCC)  
-      GP4 --| 6                                    35 |-- ADC_VREF  
-      GP5 --| 7              [ FLASH ]             34 |-- GP28 / A2  
-      GND --| 8              (MEMORY)              33 |-- GND (POT GND, XFADER GND)  
-      GP6 --| 9                                    32 |-- GP27 / A1  <-- Crossfader OTA (Wiper)  
-      GP7 --| 10                                   31 |-- GP26 / A0  <-- Master Volume Wiper  
-      GP8 --| 11                                   30 |-- RUN (RESET)  
-      GP9 --| 12            [ CRYSTAL ]            29 |-- GP22  
-      GND --| 13                                   28 |-- GND  
-     GP10 --| 14                                   27 |-- GP21  
-     GP11 --| 15                                   26 |-- GP20  
-     GP12 --| 16                                   25 |-- GP19  
-     GP13 --| 17                                   24 |-- GP18  
-      GND --| 18                                   23 |-- GND  
-  
-     GP14 --| 19  <-- Cue Button CH1 (left leg)  
-            |         Cue Button CH1 (right leg) --> GND  
-  
-     GP15 --| 20  <-- Cue Button CH2 (left leg)  
-            |         Cue Button CH2 (right leg) --> GND  
-  
-            |                                   22 |-- GP17  
-            |                                   21 |-- GP16  
-            |_________________________________________|  
+   All components use common 3V3 positive at pin 36
+   and common GND negative pins throughout the Raspberry Pi Pico.
+
+                          [ MICRO‑USB ]  
+                        /               \  
+        -----------------------------------------------------------------  
+       | ●1:GP0  ──220Ω──► 2 Volume LEDs (low)          40:VBUS        |  
+       | ●2:GP1  ──220Ω──► 3 Volume LEDs (mid)          39:VSYS        |  
+       |  3:GND                                           38:GND        |  
+       | ●4:GP2  ──220Ω──► 5 Volume LEDs (high)         37:3V3_EN      |  
+       |  5:GP3                                           36:3V3 OUT    |  
+       |  6:GP4                                           35:VREF       |  
+       |  7:GP5                                           34:GP28/A2    |  
+       |  8:GND                                           33:GND        |  
+       |  9:GP6                                      ●32:GP27/A1       |  
+       |                                                ↑              |  
+       | 10:GP7                                         │              |  
+       |                                                └─ Crossfader Linear Pot (wiper)  
+       | 11:GP8                                      ●31:GP26/A0       |  
+       |                                                ↑              |  
+       | 12:GP9                                         │              |  
+       |                                                └─ Master Volume Gain Knob (wiper)  
+       | 13:GND                                         30:RUN         |  
+       | 14:GP10                                        29:GP22        |  
+       | 15:GP11                                        28:GND         |  
+       | 16:GP12                                        27:GP21        |  
+       | 17:GP13                                        26:GP20        |  
+       | 18:GND                                         25:GP19        |  
+       | ●19:GP14  Headphone Cue 1 Button               24:GP18        |  
+       | ●20:GP15  Headphone Cue 2 Button               23:GND         |  
+        -----------------------------------------------------------------  
     
     
 ### 2. Firmware for Raspberry Pi Pico
