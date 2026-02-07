@@ -58,9 +58,9 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 1. MIDI Main Code | main.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/main.py)  
 2. MIDI Knob | MidiKnob.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/MidiKnob.py)
 3. MIDI Button | MidiButton.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/MidiButton.py)
-4. Volume LED | VolumeLED.py [Click to view the code]()
-5. DJMixer JavaScript | DJMixer.js [Click to view the code]()
-6. DJMixer MIDI Mapping | DJMixer.midi.xml [Click to view the code]()
+4. Volume LED | VolumeLED.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/VolumeLED.py)
+5. DJMixer JavaScript | DJMixer.js [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.js)
+6. DJMixer MIDI Mapping | DJMixer.midi.xml [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.midi.xml)
 
 ### 5. PuTTY Testing
 ![86577e6c-a461-44f6-8fba-a4fd0da4a37e](https://github.com/user-attachments/assets/72b99873-b96e-4c9b-8490-2b76b1a3f843)  
@@ -112,9 +112,9 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
   
 https://github.com/user-attachments/assets/6cbd6338-ae8d-4748-98ed-045691ca8060  
 
-1. Install DJMixer.JS JavaScript to your Mixxx folder: %LOCALAPPDATA%\Mixxx\controllers  
+1. Install DJMixer.JS JavaScript [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.js) to your Mixxx folder: %LOCALAPPDATA%\Mixxx\controllers  
 2. The JavaScript Function sends a MIDI message to switch on a percentage of the Volume LEDs depending on how loud.  
-3. Install DJMixer.midi.xml MIDI Mapping to your Mixxx folder: %LOCALAPPDATA%\Mixxx\controllers  
+3. Install DJMixer.midi.xml MIDI Mapping [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.midi.xml) to your Mixxx folder: %LOCALAPPDATA%\Mixxx\controllers  
 4. The MIDI Mapping links the Master Volume Gain knob to the JavaScript Function.  
 5. Preferences > Controllers  
 6. Enable CircuitPython [DJ Mixer]
