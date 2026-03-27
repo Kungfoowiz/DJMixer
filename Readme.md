@@ -49,11 +49,11 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 3. Copy the CircuitPython UF2 Firmware onto the RPI-RP2 drive.
 4. Raspberry Pi Pico Device will restart with your Firmware.  
 
-### 3. MicroPython for Raspberry Pi Pico
+### 3. CircuitPython for Raspberry Pi Pico
 1. Copy Code to the CIRCUITPY drive: boot.py, MidiKnob.py, main.py   
 3. Reset the Raspberry Pi Pico by replugging in the USB to Windows to find the DJ Mixer.  
 
-### 4. MicroPython Code, JavaScript for Mixxx Functions, MIDI Mapping 
+### 4. CircuitPython Code, JavaScript for Mixxx Functions, MIDI Mapping 
 1. MIDI Main Code | main.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/main.py)  
 2. MIDI Knob | MidiKnob.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/MidiKnob.py)
 3. MIDI Button | MidiButton.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/MidiButton.py)
