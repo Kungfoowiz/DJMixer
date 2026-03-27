@@ -1,4 +1,4 @@
-# DJ Mixer made with MicroPython and Raspberry Pi Pico  
+# DJ Mixer made with CircuitPython and Raspberry Pi Pico  
 [DJMixer workin the volume on Mixxx DJ Software](https://github.com/user-attachments/assets/1c553f8c-8dd1-4aad-b94b-343613790a40)  
 
 [DJMixer fadin the Mixxx crossfader](https://github.com/user-attachments/assets/c222bb60-0cfd-4ebf-b4f0-bd47ec6e8ceb)  
