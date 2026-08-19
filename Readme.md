@@ -68,8 +68,8 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 
 ### 5. PuTTY testing
 ![86577e6c-a461-44f6-8fba-a4fd0da4a37e](https://github.com/user-attachments/assets/72b99873-b96e-4c9b-8490-2b76b1a3f843)  
-1. Open COM5 (for example), Speed 115200.  
-2. Press Ctrl+C and you are in the Raspberry Pi Pico REPL Console.  
+1. Open COM5 (for example), speed 115200.  
+2. Press Ctrl+C and you are in the Raspberry Pi Pico REPL console.  
 3. Type the following test commands.  
 `import board, analogio`  
 `myKnob = analogio.AnalogIn(board.GP26)`  
