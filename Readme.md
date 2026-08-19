@@ -108,7 +108,7 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
   
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
-3. Use the Learning Wizard to link your physical fader to the Crossfader.
+3. Use the learning wizard to link your physical fader to the crossfader.
 
   
 # 10. Master volume gain LED
@@ -119,7 +119,7 @@ https://github.com/user-attachments/assets/6cbd6338-ae8d-4748-98ed-045691ca8060
 1. Install DJMixer.JS JavaScript [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.js) to your Mixxx folder: %LOCALAPPDATA%\Mixxx\controllers  
 2. The JavaScript function sends a MIDI message to switch on a percentage of the volume LEDs depending on loudness.  
 3. Install DJMixer.midi.xml MIDI Mapping [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.midi.xml) to your Mixxx folder: %LOCALAPPDATA%\Mixxx\controllers  
-4. The MIDI Mapping links the master volume gain knob and the JavaScript Function.  
+4. The MIDI Mapping links the master volume gain knob and the JavaScript function.  
 5. Preferences > Controllers  
 6. Enable CircuitPython [DJ Mixer]
 7. Turn the master volume gain knob and the volume LEDs will light according to the loudness.
