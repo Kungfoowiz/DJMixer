@@ -7,7 +7,7 @@
   
 ![a449f415-6a24-4223-9edb-fa6d8159da03](https://github.com/user-attachments/assets/ee2ae3a8-c3ae-4d56-87fa-120869454720)  
   
-### 1. Wiring Diagram for Raspberry Pi Pico, Volume/LEDs, Headphones, Crossfader  
+### 1. Wiring diagram for Raspberry Pi Pico, volume, LEDs, headphones and crossfader  
 [Click here to see the Full Pin Layout of the Raspberry Pi Pico](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#pinout-and-design-files-3)
   
 ⚡️ All components use the 3V3 positive at pin 36 and common GND negative pins throughout the Raspberry Pi Pico.  
@@ -47,13 +47,18 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 1. Hold BOOTSEL
 2. Plug in USB
 3. Copy the CircuitPython UF2 Firmware onto the RPI-RP2 drive.
-4. Raspberry Pi Pico Device will restart with your Firmware.  
+4. Raspberry Pi Pico Device will restart with CircuitPython firmware.  
 
 ### 3. CircuitPython for Raspberry Pi Pico
-1. Copy Code to the CIRCUITPY drive: boot.py, MidiKnob.py, main.py   
-3. Reset the Raspberry Pi Pico by replugging in the USB to Windows to find the DJ Mixer.  
+1. Ensure Raspberry Pi Pico is plugged in.
+2. Copy all Python files to its CIRCUITPY drive:
+   2.1. main.py
+   2.2. MidiButton.py
+   2.3. MidiKnob.py
+   2.4. VolumeLED.py  
+3. Reset the Raspberry Pi Pico.  
 
-### 4. CircuitPython Code, JavaScript for Mixxx Functions, MIDI Mapping 
+### 4. CircuitPython code, JavaScript for Mixxx functions, MIDI mapping 
 1. MIDI Main Code | main.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/main.py)  
 2. MIDI Knob | MidiKnob.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/MidiKnob.py)
 3. MIDI Button | MidiButton.py [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/MidiButton.py)
@@ -61,7 +66,7 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 5. DJMixer JavaScript | DJMixer.js [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.js)
 6. DJMixer MIDI Mapping | DJMixer.midi.xml [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.midi.xml)
 
-### 5. PuTTY Testing
+### 5. PuTTY testing
 ![86577e6c-a461-44f6-8fba-a4fd0da4a37e](https://github.com/user-attachments/assets/72b99873-b96e-4c9b-8490-2b76b1a3f843)  
 1. Open COM5 (for example), Speed 115200.  
 2. Press Ctrl+C and you are in the Raspberry Pi Pico REPL Console.  
@@ -69,19 +74,19 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 `import board, analogio`  
 `myKnob = analogio.AnalogIn(board.GP26)`  
 `print(myKnob.value)`  
-4. Turn the Knob and repeat the Print Test Command to see the changing volume values.  
+4. Turn the knob and repeat the print test command to test changing volume values.  
 
-### 6. Mixxx (DJ Software) Install  
+### 6. Mixxx (DJ Software) install  
 [Click to view Mixxx website](https://mixxx.org/)  
 
-### 7. Master Volume  
+### 7. Master volume  
 [Click here to watch the DJ Mixer being setup to control the Master Volume Gain on the Mixxx DJ Software](https://github.com/user-attachments/assets/feb887bd-2f77-4693-9b00-1f7e95c94420)  
   
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
 3. Use the Learning Wizard to link your physical knob to the Master Volume Gain.  
 
-### 8. Headphone Cue
+### 8. Headphone cue
 [Click here to watch the DJ Mixer being setup for Headphone Cues on the Mixxx DJ Software](https://github.com/user-attachments/assets/59d0e264-92cb-4635-8caf-5a2e17bedcf7)  
   
 ![Headphone Cue Buttons working](https://github.com/user-attachments/assets/45569a21-6c4b-425c-a57b-c6715b0c6437)  
@@ -89,12 +94,12 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
   
 1. Preferences > Sound Hardware  
 2. Go to Headphones > Output
-3. Set it to output to Speaker/Headphones [Headphone Jack] instead of Primary Sound Driver.
+3. Set it to output to speaker/headphones [headphone jack] instead of primary sound driver.
   
-#### Headphone Cue Usage  
-1. Plug Head-/Earphones into your Audio Jack.
-2. When mixing Music from Left to Right, press Headphone Cue Button 2 and you will hear it in your Headphones, but not the audience.
-7. When mixing from Right to Left, use Headphone Cue Button 1.
+#### Headphone cue usage  
+1. Plug in headphones to your computer audio.
+2. When mixing music from channel 2, press headphone cue button 2, and you will hear it in your headphones only.
+7. When mixing from channel 1, use headphone cue button 1.
 
 ### 9. Crossfader  
 [DJMixer crossfader fadin](https://github.com/user-attachments/assets/0ad6265e-071c-4046-b9fb-4720e6ab0d6d)  
@@ -106,15 +111,15 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
 3. Use the Learning Wizard to link your physical fader to the Crossfader.
 
   
-# 10. Master Volume Gain LEDs
+# 10. Master volume gain LED
 ![Master Volume Gain LEDs light according to the volume](https://github.com/user-attachments/assets/6648847a-a02d-4053-870d-845e20a179bf)  
   
 https://github.com/user-attachments/assets/6cbd6338-ae8d-4748-98ed-045691ca8060  
 
 1. Install DJMixer.JS JavaScript [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.js) to your Mixxx folder: %LOCALAPPDATA%\Mixxx\controllers  
-2. The JavaScript Function sends a MIDI message to switch on a percentage of the Volume LEDs depending on how loud.  
+2. The JavaScript function sends a MIDI message to switch on a percentage of the volume LEDs depending on loudness.  
 3. Install DJMixer.midi.xml MIDI Mapping [Click to view the code](https://github.com/Kungfoowiz/DJMixer/blob/main/AppData/Local/Mixxx/controllers/DJMixer.midi.xml) to your Mixxx folder: %LOCALAPPDATA%\Mixxx\controllers  
-4. The MIDI Mapping links the Master Volume Gain knob to the JavaScript Function.  
+4. The MIDI Mapping links the master volume gain knob and the JavaScript Function.  
 5. Preferences > Controllers  
 6. Enable CircuitPython [DJ Mixer]
-7. Turn the Master Volume Gain knob and the Volume LEDs will light up, depending on how loud the music is.
+7. Turn the master volume gain knob and the volume LEDs will light according to the loudness.
