@@ -84,7 +84,7 @@ CircuitPython UF2 [Click here to download the Firmware](https://circuitpython.or
   
 1. Preferences > Controllers  
 2. Enable CircuitPython [DJ Mixer]  
-3. Use the Learning Wizard to link your physical knob to the Master Volume Gain.  
+3. Use the learning wizard to link your physical knob to the master volume gain.  
 
 ### 8. Headphone cue
 [Click here to watch the DJ Mixer being setup for Headphone Cues on the Mixxx DJ Software](https://github.com/user-attachments/assets/59d0e264-92cb-4635-8caf-5a2e17bedcf7)  
