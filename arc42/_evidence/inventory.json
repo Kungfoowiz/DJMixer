@@ -1,0 +1,117 @@
+{
+  "app_id": "DJMixer",
+  "ledger": "inventory",
+  "evidence_level": "partial",
+  "material_present": {
+    "source_repos": ["DJMixer (single repo, no subrepos)"],
+    "docs": ["Readme.md"],
+    "cmdb": [],
+    "other": ["AppData/Local/Mixxx/controllers/DJMixer.midi.xml"]
+  },
+  "canonical_names": {
+    "building_blocks": [
+      "Pico Firmware (CircuitPython)",
+      "DJMixer (Mixxx Controller Script)",
+      "MidiKnob",
+      "MidiButton",
+      "VolumeLED"
+    ],
+    "test_projects": [],
+    "tooling_projects": [],
+    "aliases": {
+      "Pico Firmware (CircuitPython)": ["DJ Mixer"]
+    }
+  },
+  "chapter_viability": {
+    "1": true, "2": true, "3": true, "4": true, "5": true, "6": true,
+    "7": false, "8": false, "9": false, "10": false, "11": true, "12": true
+  },
+  "claims": [
+    {
+      "id": "INV-001",
+      "kind": "building_block",
+      "name": "Pico Firmware (CircuitPython)",
+      "statement": "CircuitPython firmware running on a Raspberry Pi Pico that reads physical controls and emits MIDI over USB.",
+      "attrs": { "origin": "project", "language": "CircuitPython (Python)", "framework": "CircuitPython", "runtime": "embedded, continuous polling loop", "path": "main.py" },
+      "evidence": ["main.py#L1-L34"],
+      "source": "code", "confidence": "high", "chapters": [5]
+    },
+    {
+      "id": "INV-002",
+      "kind": "building_block",
+      "name": "DJMixer (Mixxx Controller Script)",
+      "statement": "JavaScript controller mapping running inside Mixxx DJ Software that receives MIDI and adjusts LED feedback.",
+      "attrs": { "origin": "project", "language": "JavaScript", "framework": "Mixxx controller scripting API", "runtime": "event-driven, hosted inside Mixxx" },
+      "evidence": ["AppData/Local/Mixxx/controllers/DJMixer.js#L1-L4"],
+      "source": "code", "confidence": "high", "chapters": [5]
+    },
+    {
+      "id": "INV-003",
+      "kind": "building_block",
+      "name": "MidiKnob",
+      "statement": "Module reading an analog potentiometer and emitting MIDI Control Change messages when the value changes beyond a sensitivity threshold.",
+      "attrs": { "origin": "project", "level": 2, "language": "CircuitPython (Python)" },
+      "evidence": ["MidiKnob.py#L11-L44"],
+      "source": "code", "confidence": "high", "chapters": [5]
+    },
+    {
+      "id": "INV-004",
+      "kind": "building_block",
+      "name": "MidiButton",
+      "statement": "Module reading a pull-up digital button and emitting MIDI Note On/Off messages on state change.",
+      "attrs": { "origin": "project", "level": 2, "language": "CircuitPython (Python)" },
+      "evidence": ["MidiButton.py#L8-L45"],
+      "source": "code", "confidence": "high", "chapters": [5]
+    },
+    {
+      "id": "INV-005",
+      "kind": "building_block",
+      "name": "VolumeLED",
+      "statement": "Module that listens for a specific MIDI Control Change message and drives three LEDs to represent volume level.",
+      "attrs": { "origin": "project", "level": 2, "language": "CircuitPython (Python)" },
+      "evidence": ["VolumeLED.py#L4-L38"],
+      "source": "code", "confidence": "high", "chapters": [5]
+    },
+    {
+      "id": "INV-006",
+      "kind": "term",
+      "name": "MIDI CC",
+      "statement": "MIDI Control Change - a message type used throughout to carry continuous values (knob position, LED level).",
+      "attrs": {},
+      "evidence": ["MidiKnob.py#L28-L32"],
+      "source": "code", "confidence": "high", "chapters": [12]
+    },
+    {
+      "id": "INV-007",
+      "kind": "term",
+      "name": "PFL",
+      "statement": "Pre-Fader Listen - the MIDI key used in the Mixxx mapping for the headphone cue buttons.",
+      "attrs": {},
+      "evidence": ["AppData/Local/Mixxx/controllers/DJMixer.midi.xml#L26-L36"],
+      "source": "code", "confidence": "medium", "chapters": [12]
+    }
+  ],
+  "unknowns": [
+    {
+      "id": "INV-U01",
+      "looked_for": "boot.py, referenced by the Readme's setup instructions as a file that must be copied to the device",
+      "where_looked": ["staged file list"],
+      "conclusion": "not present in staged inputs",
+      "chapters": [5, 7]
+    },
+    {
+      "id": "INV-U02",
+      "looked_for": "any build or dependency manifest (requirements.txt, pyproject.toml, package.json)",
+      "where_looked": ["repo root", "staged file list"],
+      "conclusion": "none present - CircuitPython firmware has no package manager, and no manifest was staged for the Mixxx script either",
+      "chapters": [1, 2]
+    },
+    {
+      "id": "INV-U03",
+      "looked_for": "app card, CI configuration, license, or test files",
+      "where_looked": ["{OUTPUT_DIR}/DJMixer-app-card.md", ".github/workflows/**", "staged file list"],
+      "conclusion": "none present in staged inputs",
+      "chapters": [7, 8, 9, 10]
+    }
+  ]
+}
