@@ -1,0 +1,99 @@
+{
+  "app_id": "DJMixer",
+  "ledger": "structure",
+  "claims": [
+    {
+      "id": "STR-001", "kind": "building_block", "name": "Pico Firmware (CircuitPython)",
+      "statement": "Runs a continuous polling loop that owns and drives MidiKnob, MidiButton and VolumeLED instances.",
+      "attrs": { "level": 1, "responsibility": "Poll physical controls, emit MIDI, react to incoming MIDI",
+                 "depends_on": ["MidiKnob", "MidiButton", "VolumeLED"] },
+      "evidence": ["main.py#L1-L34"], "source": "code", "confidence": "high", "chapters": [5]
+    },
+    {
+      "id": "STR-002", "kind": "building_block", "name": "DJMixer (Mixxx Controller Script)",
+      "statement": "Subscribes to the Mixxx master gain engine control and translates its value into a MIDI CC message.",
+      "attrs": { "level": 1, "responsibility": "Bridge Mixxx internal engine state to outbound MIDI",
+                 "depends_on": [] },
+      "evidence": ["AppData/Local/Mixxx/controllers/DJMixer.js#L11-L27"], "source": "code",
+      "confidence": "high", "chapters": [5]
+    },
+    {
+      "id": "STR-003", "kind": "external", "name": "Mixxx DJ Software",
+      "statement": "Third-party DJ application that the Pico Firmware exchanges MIDI Control Change and Note messages with, and that hosts the DJMixer.js controller script.",
+      "attrs": { "direction": "bidirectional", "protocol": "MIDI over USB", "owner": "unknown (open-source, third-party)",
+                 "responsibility": "Runs the actual mixing engine (gain, crossfader, PFL); the Pico is a peripheral to it" },
+      "evidence": ["Readme.md#L60-L67", "AppData/Local/Mixxx/controllers/DJMixer.midi.xml#L1-L10"],
+      "source": "code", "confidence": "high", "chapters": [3, 5]
+    },
+    {
+      "id": "STR-004", "kind": "interface", "name": "Master Gain CC",
+      "statement": "MIDI Control Change, channel 1, CC7 - carries master volume gain, bidirectionally: knob-to-Mixxx and Mixxx-to-LEDs.",
+      "attrs": { "direction": "bidirectional", "protocol": "MIDI CC (0xB0, CC 0x07)",
+                 "spec_link": "AppData/Local/Mixxx/controllers/DJMixer.midi.xml",
+                 "example": "[176, 7, 96]" },
+      "evidence": ["main.py#L8", "AppData/Local/Mixxx/controllers/DJMixer.js#L29",
+                   "VolumeLED.py#L30-L31"], "source": "code", "confidence": "high", "chapters": [3]
+    },
+    {
+      "id": "STR-005", "kind": "interface", "name": "Crossfader CC",
+      "statement": "MIDI Control Change, channel 1, CC8 - carries crossfader position, knob-to-Mixxx only.",
+      "attrs": { "direction": "outbound", "protocol": "MIDI CC (0xB0, CC 0x08)",
+                 "spec_link": "AppData/Local/Mixxx/controllers/DJMixer.midi.xml", "example": "[176, 8, 64]" },
+      "evidence": ["main.py#L14", "AppData/Local/Mixxx/controllers/DJMixer.midi.xml#L16-L24"],
+      "source": "code", "confidence": "high", "chapters": [3]
+    },
+    {
+      "id": "STR-006", "kind": "interface", "name": "Headphone Cue Note",
+      "statement": "MIDI Note On/Off, channel 1, notes 20 and 21 - toggles PFL (pre-fader listen) for channel 1 or 2.",
+      "attrs": { "direction": "outbound", "protocol": "MIDI Note (0x90, note 0x14 / 0x15)",
+                 "spec_link": "AppData/Local/Mixxx/controllers/DJMixer.midi.xml", "example": "[144, 20, 127]" },
+      "evidence": ["main.py#L10-L12", "AppData/Local/Mixxx/controllers/DJMixer.midi.xml#L26-L44"],
+      "source": "code", "confidence": "high", "chapters": [3]
+    },
+    {
+      "id": "STR-007", "kind": "actor", "name": "DJ",
+      "statement": "A person operating the physical hardware - turning knobs, pressing headphone cue buttons, plugging in headphones - to control a live mix.",
+      "attrs": { "kind": "human", "responsibility": "Adjusts master volume, crossfader position and headphone cue while mixing" },
+      "evidence": ["Readme.md#L67-L74"], "source": "code", "confidence": "high", "chapters": [1, 3, 6]
+    },
+    {
+      "id": "STR-008", "kind": "flow", "name": "DJ adjusts master volume",
+      "statement": "Turning the gain knob sends a MIDI CC to Mixxx, which applies the new gain and echoes a CC back so the Pico can light the volume LEDs.",
+      "attrs": { "trigger": "DJ turns the Master Volume Gain knob",
+                 "intent": "Change the audible output level and show it on the LEDs",
+                 "crosses_boundary": true, "failure_path": false,
+                 "steps": [
+                   { "from": "DJ", "to": "MidiKnob", "action": "physically turn knob" },
+                   { "from": "MidiKnob", "to": "Mixxx DJ Software", "action": "send CC7 value" },
+                   { "from": "Mixxx DJ Software", "to": "DJMixer (Mixxx Controller Script)", "action": "gain engine callback fires" },
+                   { "from": "DJMixer (Mixxx Controller Script)", "to": "VolumeLED", "action": "send normalised CC7 value" },
+                   { "from": "VolumeLED", "to": "DJ", "action": "light 0-3 LEDs" }
+                 ] },
+      "evidence": ["MidiKnob.py#L28-L38", "AppData/Local/Mixxx/controllers/DJMixer.js#L11-L27",
+                   "VolumeLED.py#L20-L38"], "source": "code", "confidence": "high", "chapters": [6]
+    },
+    {
+      "id": "STR-009", "kind": "flow", "name": "DJ engages headphone cue",
+      "statement": "Pressing a cue button sends a MIDI Note to Mixxx, which routes that channel's audio to the headphone output.",
+      "attrs": { "trigger": "DJ presses Headphone Cue Button 1 or 2",
+                 "intent": "Preview a channel privately before mixing it in",
+                 "crosses_boundary": true, "failure_path": false,
+                 "steps": [
+                   { "from": "DJ", "to": "MidiButton", "action": "press button (pull-up goes low)" },
+                   { "from": "MidiButton", "to": "Mixxx DJ Software", "action": "send Note On, note 20 or 21, velocity 127" }
+                 ] },
+      "evidence": ["MidiButton.py#L28-L45", "Readme.md#L104-L110"], "source": "code",
+      "confidence": "high", "chapters": [6]
+    }
+  ],
+  "unknowns": [
+    { "id": "STR-U01", "looked_for": "a failure or error-handling path (retry, timeout, disconnect recovery)",
+      "where_looked": ["main.py", "MidiKnob.py", "MidiButton.py", "VolumeLED.py", "DJMixer.js"],
+      "conclusion": "no error handling, USB-disconnect handling or retry logic present anywhere in staged code",
+      "chapters": [6, 11] },
+    { "id": "STR-U02", "looked_for": "a datastore or persisted state of any kind",
+      "where_looked": ["all staged .py and .js files"],
+      "conclusion": "none present - the system is entirely stateless in-memory (last-value comparison only)",
+      "chapters": [5] }
+  ]
+}

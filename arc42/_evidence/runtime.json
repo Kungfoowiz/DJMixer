@@ -1,0 +1,82 @@
+{
+  "app_id": "DJMixer",
+  "ledger": "runtime",
+  "claims": [
+    {
+      "id": "RUN-001", "kind": "deployment_node", "name": "Raspberry Pi Pico (device)",
+      "statement": "Physical microcontroller running the CircuitPython firmware, connected to the DJ's PC over USB.",
+      "attrs": { "technology": "Raspberry Pi Pico, CircuitPython runtime", "environment": "unknown",
+                 "hosts": ["Pico Firmware (CircuitPython)"], "trust_zone": "physically local",
+                 "scaling": "single device" },
+      "evidence": ["Readme.md#L27-L33"], "source": "code", "confidence": "high", "chapters": [7]
+    },
+    {
+      "id": "RUN-002", "kind": "deployment_node", "name": "DJ's PC (Mixxx host)",
+      "statement": "Windows PC running Mixxx DJ Software, which loads the DJMixer.js controller script from the user's local app-data folder.",
+      "attrs": { "technology": "Windows (implied by %LOCALAPPDATA% path); Mixxx DJ Software",
+                 "environment": "unknown", "hosts": ["DJMixer (Mixxx Controller Script)"],
+                 "trust_zone": "physically local", "scaling": "single instance" },
+      "evidence": ["Readme.md#L131-L133"], "source": "code", "confidence": "medium", "chapters": [7]
+    },
+    {
+      "id": "RUN-003", "kind": "config", "name": "GPIO pin assignments",
+      "statement": "Physical GPIO pins are hardcoded in main.py to specific control functions (A0=volume, A1=crossfader, GP14/GP15=cue buttons, GP0-2=LEDs).",
+      "attrs": { "key": "board.A0 / board.A1 / board.GP14 / board.GP15 / board.GP0-2", "default": "n/a - hardcoded",
+                 "required": "yes", "where_set": "main.py source, wired to match Readme's wiring diagram",
+                 "influences": "Which physical pin drives which control", "secret": false },
+      "evidence": ["main.py#L7-L22"], "source": "code", "confidence": "high", "chapters": [7]
+    },
+    {
+      "id": "RUN-004", "kind": "config", "name": "MIDI channel / CC / note numbers",
+      "statement": "MIDI channel (1) and CC/note numbers (7, 8, 20, 21) are hardcoded constants matching the Mixxx MIDI mapping XML.",
+      "attrs": { "key": "midiChangeControl / midiChannel constructor args", "default": "none",
+                 "required": "yes", "where_set": "main.py constructor calls, mirrored in DJMixer.midi.xml",
+                 "influences": "Which Mixxx control a given physical input drives", "secret": false },
+      "evidence": ["main.py#L7-L22", "AppData/Local/Mixxx/controllers/DJMixer.midi.xml#L11-L44"],
+      "source": "code", "confidence": "high", "chapters": [7]
+    },
+    {
+      "id": "RUN-005", "kind": "config", "name": "potentiometerSensitivity",
+      "statement": "Threshold below which a knob movement is treated as jitter and ignored, hardcoded to 2 (out of a 0-127 MIDI range).",
+      "attrs": { "key": "MidiKnob.potentiometerSensitivity", "default": "2", "required": "no",
+                 "where_set": "MidiKnob.py constructor", "influences": "Knob responsiveness vs. jitter suppression",
+                 "secret": false },
+      "evidence": ["MidiKnob.py#L23"], "source": "code", "confidence": "high", "chapters": [7]
+    },
+    {
+      "id": "RUN-006", "kind": "config", "name": "PuTTY serial connection",
+      "statement": "Manual REPL testing connects over a COM port at 115200 baud.",
+      "attrs": { "key": "COM port / baud rate", "default": "COM5 (example), 115200",
+                 "required": "no - dev/test only", "where_set": "chosen per-machine in PuTTY, not in source",
+                 "influences": "Ability to interactively test the device", "secret": false },
+      "evidence": ["Readme.md#L83-L88"], "source": "code", "confidence": "medium", "chapters": [7]
+    },
+    {
+      "id": "RUN-007", "kind": "debt", "name": "No automated deployment",
+      "statement": "Firmware install is a fully manual drag-and-drop of three files onto a USB mass-storage drive; the Mixxx script install is a manual copy into a fixed folder. No script or CI automates either.",
+      "attrs": { "area": "operability" },
+      "evidence": ["Readme.md#L36-L40", "Readme.md#L131-L133"], "source": "code",
+      "confidence": "high", "chapters": [7, 11]
+    },
+    {
+      "id": "RUN-008", "kind": "debt", "name": "No health/liveness signal",
+      "statement": "Nothing in the firmware or the Mixxx script reports its own health; a hung polling loop or a disconnected device is only noticeable by the DJ losing control mid-set.",
+      "attrs": { "area": "operability" },
+      "evidence": ["main.py#L27-L34"], "source": "code", "confidence": "medium", "chapters": [7, 11]
+    }
+  ],
+  "unknowns": [
+    { "id": "RUN-U01", "looked_for": "which OS the Mixxx host must run (only %LOCALAPPDATA% path was found, which is Windows-specific)",
+      "where_looked": ["Readme.md", "all staged files"],
+      "conclusion": "no explicit OS statement; the install path implies Windows but this is not confirmed anywhere",
+      "chapters": [2, 7] },
+    { "id": "RUN-U02", "looked_for": "boot.py contents (referenced by Readme but not staged - see INV-U01)",
+      "where_looked": ["staged file list"],
+      "conclusion": "not present; cannot confirm what boot-time configuration, if any, it performs",
+      "chapters": [7] },
+    { "id": "RUN-U03", "looked_for": "CI/CD, containerisation or IaC of any kind",
+      "where_looked": ["**/Dockerfile*", "**/*.yml", "**/*.yaml", "staged file list"],
+      "conclusion": "not applicable - this is embedded firmware and a DJ-software plugin, neither containerised nor CI-built in the staged material",
+      "chapters": [7] }
+  ]
+}

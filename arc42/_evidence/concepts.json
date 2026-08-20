@@ -1,0 +1,71 @@
+{
+  "app_id": "DJMixer",
+  "ledger": "concepts",
+  "claims": [
+    {
+      "id": "CPT-001", "kind": "concept", "name": "Continuous polling loop",
+      "statement": "All input handling (knobs, buttons, incoming MIDI) is driven from one unbounded while-True loop that calls monitor() on every component every iteration, rather than interrupts or callbacks.",
+      "attrs": { "category": "domain model",
+                 "rules": ["Every component exposes a parameterless monitor() method.",
+                           "monitor() must return quickly and never block, since it shares one loop with every other component."],
+                 "implementation": "main.py's while True loop, calling monitor() on each of MidiKnob x2, MidiButton x2, VolumeLED",
+                 "shows_up_in": ["Pico Firmware (CircuitPython)", "MidiKnob", "MidiButton", "VolumeLED"] },
+      "evidence": ["main.py#L27-L34"], "source": "code", "confidence": "high", "chapters": [8]
+    },
+    {
+      "id": "CPT-002", "kind": "concept", "name": "Change-only MIDI emission",
+      "statement": "Both the knob and button components track their last-sent value and only emit a MIDI message when the current reading differs from it, avoiding a flood of identical messages.",
+      "attrs": { "category": "integration conventions",
+                 "rules": ["A knob only sends when the change exceeds potentiometerSensitivity (jitter guard).",
+                           "A button only sends on an actual state transition, never on a steady state."],
+                 "implementation": "MidiKnob.potentiometerLastValue and MidiButton.lastState, compared each monitor() call",
+                 "shows_up_in": ["MidiKnob", "MidiButton"] },
+      "evidence": ["MidiKnob.py#L34-L44", "MidiButton.py#L32-L45"], "source": "code",
+      "confidence": "high", "chapters": [8]
+    },
+    {
+      "id": "CPT-003", "kind": "concept", "name": "Fixed MIDI channel/CC mapping",
+      "statement": "Every physical control is wired to one hardcoded MIDI channel and CC/note number, matched on the Mixxx side by a static XML mapping file rather than any runtime negotiation or MIDI-learn logic in code.",
+      "attrs": { "category": "integration conventions",
+                 "rules": ["A physical control's MIDI address is fixed at construction time in main.py and must be mirrored exactly in DJMixer.midi.xml.",
+                           "Changing one side without the other silently breaks that control."],
+                 "implementation": "main.py constructor arguments <-> AppData/Local/Mixxx/controllers/DJMixer.midi.xml <control> entries",
+                 "shows_up_in": ["Pico Firmware (CircuitPython)", "DJMixer (Mixxx Controller Script)"] },
+      "evidence": ["main.py#L7-L22", "AppData/Local/Mixxx/controllers/DJMixer.midi.xml#L11-L44"],
+      "source": "code", "confidence": "high", "chapters": [8]
+    },
+    {
+      "id": "CPT-004", "kind": "decision", "name": "Use CircuitPython on Raspberry Pi Pico as the controller platform",
+      "statement": "The hardware controller runs CircuitPython firmware on a Pico rather than a pre-built commercial MIDI controller or a different microcontroller stack.",
+      "attrs": { "date": "unknown", "status": "accepted", "decision_makers": "unknown",
+                 "context": "Building a custom DJ mixer controller from raw components (potentiometers, buttons, LEDs)",
+                 "options": [],
+                 "consequences": ["Full control over pin mapping and MIDI behaviour",
+                                  "Firmware install and updates are entirely manual (see RUN-007)"],
+                 "affects": ["Pico Firmware (CircuitPython)"], "provenance": "inferred" },
+      "evidence": ["Readme.md#L27-L33"], "source": "inferred", "confidence": "low", "chapters": [4, 9]
+    },
+    {
+      "id": "CPT-005", "kind": "decision", "name": "Bridge to Mixxx via a MIDI mapping script rather than a native plugin",
+      "statement": "Integration with Mixxx is done through its documented MIDI controller-scripting mechanism (a JS file plus an XML mapping) rather than a native/compiled Mixxx plugin.",
+      "attrs": { "date": "unknown", "status": "accepted", "decision_makers": "unknown",
+                 "context": "Mixxx exposes a scripting API for third-party controllers; this is the standard, supported integration path",
+                 "options": [],
+                 "consequences": ["No Mixxx source changes needed", "Integration is limited to whatever the MIDI scripting API exposes"],
+                 "affects": ["DJMixer (Mixxx Controller Script)"], "provenance": "inferred" },
+      "evidence": ["AppData/Local/Mixxx/controllers/DJMixer.js#L1-L27",
+                   "AppData/Local/Mixxx/controllers/DJMixer.midi.xml#L1-L10"],
+      "source": "inferred", "confidence": "low", "chapters": [4, 9]
+    }
+  ],
+  "unknowns": [
+    { "id": "CPT-U01", "looked_for": "an ADR folder, CHANGELOG, or git history to date these decisions",
+      "where_looked": ["docs/adr/**", "CHANGELOG*", "staged file list"],
+      "conclusion": "no such material staged, and no .git history was provided - both decisions above are structural inference only",
+      "chapters": [9] },
+    { "id": "CPT-U02", "looked_for": "authentication, authorisation or secret-handling concepts",
+      "where_looked": ["all staged files"],
+      "conclusion": "not applicable - the system has no network identity surface; MIDI-over-USB has no auth concept",
+      "chapters": [8] }
+  ]
+}

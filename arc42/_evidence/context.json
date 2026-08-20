@@ -1,0 +1,82 @@
+{
+  "app_id": "DJMixer",
+  "ledger": "context",
+  "claims": [
+    {
+      "id": "CTX-001", "kind": "requirement", "name": "Control master volume from a physical knob",
+      "statement": "A DJ can raise or lower the Mixxx master volume gain by turning a physical knob, without touching the software UI.",
+      "attrs": { "non_goal": false }, "evidence": ["Readme.md#L52-L56"], "source": "code",
+      "confidence": "high", "chapters": [1]
+    },
+    {
+      "id": "CTX-002", "kind": "requirement", "name": "See volume level on physical LEDs",
+      "statement": "A DJ can glance at three LEDs to gauge current master volume instead of watching a screen.",
+      "attrs": { "non_goal": false }, "evidence": ["Readme.md#L118-L124"], "source": "code",
+      "confidence": "high", "chapters": [1]
+    },
+    {
+      "id": "CTX-003", "kind": "requirement", "name": "Crossfade between two channels from a physical fader",
+      "statement": "A DJ can blend between two tracks using a physical crossfader rather than an on-screen control.",
+      "attrs": { "non_goal": false }, "evidence": ["Readme.md#L99-L102"], "source": "code",
+      "confidence": "high", "chapters": [1]
+    },
+    {
+      "id": "CTX-004", "kind": "requirement", "name": "Cue a channel privately in headphones",
+      "statement": "A DJ can preview either channel in their own headphones, without the audience hearing it, before mixing it into the main output.",
+      "attrs": { "non_goal": false }, "evidence": ["Readme.md#L67-L74"], "source": "code",
+      "confidence": "high", "chapters": [1]
+    },
+    {
+      "id": "CTX-005", "kind": "requirement", "name": "Not stated",
+      "statement": "Not stated in the available sources.",
+      "attrs": { "non_goal": true }, "evidence": ["Readme.md"], "source": "code",
+      "confidence": "low", "chapters": [1]
+    },
+    {
+      "id": "CTX-006", "kind": "quality_goal", "name": "Responsiveness of physical controls",
+      "statement": "Turning a knob or pressing a button should be reflected in Mixxx (and vice-versa for LEDs) without a noticeable lag, since this is used live while mixing.",
+      "attrs": { "quality": "Performance efficiency", "priority": 1,
+                 "scenario": "DJ turns the gain knob during a live set", "target": "unknown" },
+      "evidence": ["main.py#L27-L34"], "source": "inferred", "confidence": "low", "chapters": [1, 10]
+    },
+    {
+      "id": "CTX-007", "kind": "quality_goal", "name": "Simplicity of setup for a hobbyist builder",
+      "statement": "The project is documented as a step-by-step wiring and install guide aimed at someone building it themselves, not a packaged commercial product.",
+      "attrs": { "quality": "Maintainability", "priority": 2,
+                 "scenario": "A hobbyist follows the Readme to wire and flash their own unit", "target": "unknown" },
+      "evidence": ["Readme.md#L1-L20"], "source": "code", "confidence": "medium", "chapters": [1, 10]
+    },
+    {
+      "id": "CTX-008", "kind": "stakeholder", "name": "DJ / builder",
+      "statement": "The person who both builds the hardware and uses it while mixing - in this project the same role, based on the Readme's first-person, self-build framing.",
+      "attrs": { "role": "End user and builder", "expectations": "A working, low-latency physical control surface for Mixxx" },
+      "evidence": ["Readme.md#L1-L4"], "source": "code", "confidence": "medium", "chapters": [1]
+    },
+    {
+      "id": "CTX-009", "kind": "constraint", "name": "Must integrate with Mixxx's MIDI controller scripting API",
+      "statement": "Any control surface must speak MIDI and be expressed as a Mixxx controller mapping (JS + XML), since that is the only integration point Mixxx exposes.",
+      "attrs": { "type": "technical", "rationale": "Mixxx is third-party software; only its documented scripting API is available",
+                 "impact": "Forces every control's behaviour into a MIDI CC/Note vocabulary", "reference": "Mixxx DJ Software" },
+      "evidence": ["Readme.md#L60-L67", "AppData/Local/Mixxx/controllers/DJMixer.js#L1-L27"],
+      "source": "code", "confidence": "high", "chapters": [2]
+    },
+    {
+      "id": "CTX-010", "kind": "risk", "name": "No app card or CMDB record exists",
+      "statement": "This system has no staged app card, manifest row, or any metadata beyond its own source and Readme, so nothing about it has been independently catalogued.",
+      "attrs": { "why_it_matters": "Any programme-level tracking of this app depends entirely on this one analysis being current",
+                 "mitigation": "Stage a manifest-row.yaml or app card if this needs to be tracked alongside other apps",
+                 "owner": "unknown" },
+      "evidence": ["staged file list"], "source": "inferred", "confidence": "high", "chapters": [11]
+    }
+  ],
+  "unknowns": [
+    { "id": "CTX-U01", "looked_for": "a measurable latency or performance target for control responsiveness",
+      "where_looked": ["Readme.md", "all staged files"],
+      "conclusion": "no number stated anywhere", "chapters": [1, 10] },
+    { "id": "CTX-U02", "looked_for": "any stakeholder beyond the DJ/builder - e.g. other band/crew members, a venue, a hardware supplier",
+      "where_looked": ["Readme.md"], "conclusion": "none named", "chapters": [1] },
+    { "id": "CTX-U03", "looked_for": "an app card or CMDB integrations list to cross-check against STR-003 (Mixxx)",
+      "where_looked": ["{OUTPUT_DIR}/DJMixer-app-card.md"], "conclusion": "no app card staged - see CTX-010",
+      "chapters": [3] }
+  ]
+}
