@@ -1,21 +1,15 @@
 {
-  "round": 0,
+  "round": 1,
   "run_id": "DJMixer-sim-01",
-  "confidence": 82,
-  "grounded": false,
+  "confidence": 91,
+  "grounded": true,
   "findings": [
-    {
-      "doc": "ev_context",
-      "claim": "CTX-010 - 'No app card or CMDB record exists' - restricted-metadata risk claim.",
-      "issue": "This claim is marked source: inferred but confidence: high. _common.md's rule is absolute: source: inferred may never be confidence: high, regardless of how obviously true the inference is. The statement itself is well-supported by the staged file list, but the confidence label must drop to medium (or the source should be reconsidered - the absence of a file is arguably code-observable fact, not inference, which would justify high at source: code instead).",
-      "severity": "high"
-    },
     {
       "doc": "ev_inventory",
       "claim": "chapter_viability.7 = false, while ev_runtime independently produced RUN-001 and RUN-002 (deployment_node claims for the Pico device and the DJ's PC).",
-      "issue": "inventory.json's chapter 7 rule requires a formal deployment artifact (Dockerfile, compose, k8s/Helm, IaC, CI workflow, appsettings.<env>.json, or a hosting statement on an app card) - none of those literally exist here, so false is a defensible strict reading. But ev_runtime still found real, evidenced hosting information from Readme prose (wiring/install instructions), which is exactly the kind of material a chapter 7 stub-vs-partial call should weigh. Worth the Orchestrator's attention rather than a hard block: chapter 7 may deserve status: partial rather than a full stub, once ch07 exists.",
+      "issue": "Still a valid low-severity note, unresolved from round 0: no formal deployment artifact exists per the strict rule, but ev_runtime found real hosting evidence from Readme prose worth weighing when ch07 is eventually written. Not blocking.",
       "severity": "low"
     }
   ],
-  "notification": "One real defect: ev_context's CTX-010 pairs source: inferred with confidence: high, which _common.md forbids outright - fix by downgrading to medium or re-sourcing as code. Separately, ev_inventory's chapter_viability may be a shade too conservative on chapter 7 given what ev_runtime actually harvested from the Readme - not a violation, just worth the Orchestrator or a human weighing when ch07 is eventually written. Naming discipline, secrets handling and unknowns[] population all check out cleanly across all five ledgers."
+  "notification": "The high-severity finding from round 0 (CTX-010's source: inferred paired with confidence: high) is resolved - context.json now shows confidence: medium for that claim, consistent with _common.md's absolute rule. One low-severity note carried forward on ev_inventory's chapter 7 viability call, not blocking. All five ledgers are grounded."
 }
