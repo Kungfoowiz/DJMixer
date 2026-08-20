@@ -66,7 +66,7 @@
       "attrs": { "why_it_matters": "Any programme-level tracking of this app depends entirely on this one analysis being current",
                  "mitigation": "Stage a manifest-row.yaml or app card if this needs to be tracked alongside other apps",
                  "owner": "unknown" },
-      "evidence": ["staged file list"], "source": "inferred", "confidence": "high", "chapters": [11]
+      "evidence": ["staged file list"], "source": "inferred", "confidence": "medium", "chapters": [11]
     }
   ],
   "unknowns": [
