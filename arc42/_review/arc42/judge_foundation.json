@@ -1,0 +1,17 @@
+{"entries": [
+  {
+    "round": 0,
+    "run_id": "DJMixer-sim-01",
+    "confidence": 78,
+    "grounded": false,
+    "findings": [
+      {
+        "doc": "ch05",
+        "claim": "5.1 Level 1 lists MidiKnob, MidiButton and VolumeLED as independent Level 1 building blocks.",
+        "issue": "structure.json tags these three with attrs.level: 2, meaning they are internal modules of Pico Firmware, not independent Level 1 units. ch05 correctly followed its own literal rule ('Level 1 is exactly inventory.json's canonical_names.building_blocks'), but that rule and structure.json's own level tagging disagree with each other at the ledger layer - inventory.json never differentiated level for these five names. This is a naming/granularity inconsistency the ledgers introduced, surfaced here because ch05 is where it becomes visible as a diagram.",
+        "severity": "medium"
+      }
+    ],
+    "notification": "One real cross-ledger inconsistency: inventory.json's flat building_blocks list disagrees with structure.json's level:1/level:2 tagging for the same five names, which shows up in ch05's diagram treating three internal modules as top-level blocks. Not a fabrication and not a broken hard rule (ch03/ch05 externals still match, ch04's traceability is intact) - but worth deciding whether to fix at the ledger layer before more chapters build on ch05's block list."
+  }
+]}

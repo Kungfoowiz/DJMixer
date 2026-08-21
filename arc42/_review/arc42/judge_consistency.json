@@ -1,0 +1,10 @@
+{"entries": [
+  {
+    "round": 0,
+    "run_id": "DJMixer-sim-01",
+    "confidence": 90,
+    "grounded": true,
+    "findings": [],
+    "notification": "All seven cross-chapter invariants hold: ch03's sole peer (Mixxx DJ Software) matches ch05's sole external node; ch06's participants are all either ch05 blocks or ch03's DJ/Mixxx; ch07's mapping table covers every ch05 block; both ch10 scenarios trace to real ch01 goals; both ch04 statements' Traces-to lines name real ch01/ch02 items; ch08's Where-it-shows-up links all resolve to real ch05/06/09 headings and records; ch12's four terms are all used elsewhere. No contradictions or honesty leaks found - every 'unknown' recorded in one chapter stays unknown everywhere else it's referenced. Note: the ch05 Level-1-granularity finding already raised by judge_foundation is a per-chapter grounding matter that judge belongs to, not a cross-chapter invariant break, so it is not repeated here."
+  }
+]}
